@@ -1,5 +1,5 @@
-from tkinter import *
 from math import floor
+from tkinter import *
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -25,7 +25,16 @@ def start_timer():
 def count_down(count):
     minutes = floor(count / 60)
     seconds = count % 60
-    canvas.itemconfig(timer_text, text=f"{minutes}:{seconds}")
+    a, b = "", ""
+    if minutes <= 9:
+        a = 0
+    else:
+        a = ""
+    if seconds <= 9:
+        b = 0
+    else:
+        b = ""
+    canvas.itemconfig(timer_text, text=f"{a}{minutes}:{b}{seconds}")
     if count > 0:
         canvas.after(1000, count_down, count - 1)
 
