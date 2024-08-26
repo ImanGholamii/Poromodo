@@ -1,4 +1,5 @@
 from tkinter import *
+
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -10,11 +11,16 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
-# ---------------------------- TIMER RESET ------------------------------- # 
+
+# ---------------------------- TIMER RESET ------------------------------- #
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
+def count_down(count):
+    print(count)
+    if count > 0:
+        canvas.after(1000, count_down, count - 1)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -33,11 +39,13 @@ for col in range(columns):
         window.grid_columnconfigure(index=col, weight=2)
     window.grid_columnconfigure(index=col, weight=1)
 
-canvas = Canvas(width=200, height=254, background=YELLOW, highlightthickness=0)  # highlightthickness >> remove frame
+# Canvas
+canvas = Canvas(width=200, height=254, background=YELLOW, highlightthickness=0)  # highlight thickness >> remove frame
 tomato_img = PhotoImage(file="tomato.png")  # write Address
 canvas.create_image(100, 112, image=tomato_img)
 canvas.create_text(100, 130, text="00:00", font=(FONT_NAME, 30, "bold"), fill="white")
 canvas.grid_configure(row=1, column=1)
+count_down(5)
 
 # Labels
 timer_label = Label(text="Timer", font=(FONT_NAME, 35, "bold"), bg=YELLOW, fg=GREEN)
@@ -49,6 +57,7 @@ check_label.grid_configure(row=3, column=1)
 # Buttons
 start_btn = Button(text="Start", font=(FONT_NAME, 10, "bold"), bg=WHITE, bd=0, padx=0, pady=0, highlightthickness=0)
 start_btn.grid_configure(row=2, column=0)
+
 reset_btn = Button(text="Reset", font=(FONT_NAME, 10, "bold"), bg=WHITE, bd=0, padx=0, pady=0, highlightthickness=0)
 reset_btn.grid_configure(row=2, column=2)
 
