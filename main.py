@@ -1,4 +1,5 @@
 from tkinter import *
+from math import floor
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -17,15 +18,17 @@ LONG_BREAK_MIN = 20
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
-    count_down(5)
+    count_down(5 * 60)  # we want minutes in remaining seconds show
 
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
+
+# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
-    canvas.itemconfig(timer_text, text=count)
-    print(count)
+    minutes = floor(count / 60)
+    seconds = count % 60
+    canvas.itemconfig(timer_text, text=f"{minutes}:{seconds}")
     if count > 0:
-        # count -= 1
         canvas.after(1000, count_down, count - 1)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
