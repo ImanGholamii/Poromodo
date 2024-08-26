@@ -18,7 +18,11 @@ LONG_BREAK_MIN = 20
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Pomodoro")
-# window.config(width=400, height=350, background="#e2979c")
+window.config(padx=50, pady=50)
+canvas = Canvas(width=200, height=254)
+tomato_img = PhotoImage(file="tomato.png")  # write Address
+canvas.create_image(102, 112, image=tomato_img)
 
+canvas.pack()
 
 window.mainloop()
