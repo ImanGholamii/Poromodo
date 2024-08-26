@@ -20,6 +20,7 @@ LONG_BREAK_MIN = 20
 def count_down(count):
     print(count)
     if count > 0:
+        # count -= 1
         canvas.after(1000, count_down, count - 1)
 
 # ---------------------------- UI SETUP ------------------------------- #
