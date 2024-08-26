@@ -21,20 +21,24 @@ reps = 1
 def start_timer():
     global reps
     if reps % 8 == 0:
-        timer_label.config(text="Long Break", fg=RED)
+        timer_label.config(text="Break", fg=RED)
         count = LONG_BREAK_MIN
     elif reps % 2 == 0:
-        timer_label.config(text="Short Break", fg=PINK)
+        timer_label.config(text="Break", fg=PINK)
         count = SHORT_BREAK_MIN
     else:
-        timer_label.config(text="Working", fg=GREEN)
+        timer_label.config(text="Work", fg=GREEN)
         count = WORK_MIN
     count_down(count * 60)  # we want minutes in remaining seconds show
     reps += 1
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
+work_session = 0
+
+
 def count_down(count):
+    global work_session
     minutes = floor(count / 60)
     seconds = count % 60
 
@@ -49,6 +53,9 @@ def count_down(count):
         canvas.after(1000, count_down, count - 1)
     else:
         start_timer()
+        if reps % 2 != 0:
+            work_session += 1
+        check_label.config(text=work_session * "✔")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -79,7 +86,7 @@ canvas.grid_configure(row=1, column=1)
 timer_label = Label(text="Timer", font=(FONT_NAME, 35, "bold"), bg=YELLOW, fg=GREEN)
 timer_label.grid_configure(row=0, column=1)
 
-check_label = Label(text="✔", font=(FONT_NAME, 15, "bold"), bg=YELLOW, fg=GREEN)
+check_label = Label(font=(FONT_NAME, 15, "bold"), bg=YELLOW, fg=GREEN)
 check_label.grid_configure(row=3, column=1)
 
 # Buttons
