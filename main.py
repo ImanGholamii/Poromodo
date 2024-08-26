@@ -18,23 +18,21 @@ LONG_BREAK_MIN = 20
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
-    count_down(5 * 60)  # we want minutes in remaining seconds show
+    count_down(5.2 * 60)  # we want minutes in remaining seconds show
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
     minutes = floor(count / 60)
     seconds = count % 60
-    a, b = "", ""
+
     if minutes <= 9:
-        a = 0
-    else:
-        a = ""
+        minutes = f"0{minutes}"
     if seconds <= 9:
-        b = 0
+        seconds = f"0{int(seconds)}"
     else:
-        b = ""
-    canvas.itemconfig(timer_text, text=f"{a}{minutes}:{b}{seconds}")
+        seconds = int(seconds)
+    canvas.itemconfig(timer_text, text=f"{minutes}:{seconds}")
     if count > 0:
         canvas.after(1000, count_down, count - 1)
 
