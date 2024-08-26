@@ -18,6 +18,7 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
+    canvas.itemconfig(timer_text, text=count)
     print(count)
     if count > 0:
         # count -= 1
@@ -44,7 +45,7 @@ for col in range(columns):
 canvas = Canvas(width=200, height=254, background=YELLOW, highlightthickness=0)  # highlight thickness >> remove frame
 tomato_img = PhotoImage(file="tomato.png")  # write Address
 canvas.create_image(100, 112, image=tomato_img)
-canvas.create_text(100, 130, text="00:00", font=(FONT_NAME, 30, "bold"), fill="white")
+timer_text = canvas.create_text(100, 130, text="00:00", font=(FONT_NAME, 30, "bold"), fill="white")
 canvas.grid_configure(row=1, column=1)
 count_down(5)
 
