@@ -12,13 +12,23 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
-
 # ---------------------------- TIMER RESET ------------------------------- #
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
+reps = 1
+
 
 def start_timer():
-    count_down(5.2 * 60)  # we want minutes in remaining seconds show
+    global reps
+    if reps % 8 == 0:
+        count = LONG_BREAK_MIN
+    elif reps % 2 == 0:
+        count = SHORT_BREAK_MIN
+    else:
+        count = WORK_MIN
+    count_down(count * 60)  # we want minutes in remaining seconds show
+    print(reps, " >> ", count)
+    reps += 1
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
