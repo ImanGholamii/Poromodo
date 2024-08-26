@@ -21,13 +21,15 @@ reps = 1
 def start_timer():
     global reps
     if reps % 8 == 0:
+        timer_label.config(text="Long Break", fg=RED)
         count = LONG_BREAK_MIN
     elif reps % 2 == 0:
+        timer_label.config(text="Short Break", fg=PINK)
         count = SHORT_BREAK_MIN
     else:
+        timer_label.config(text="Working", fg=GREEN)
         count = WORK_MIN
     count_down(count * 60)  # we want minutes in remaining seconds show
-    print(reps, " >> ", count)
     reps += 1
 
 
@@ -45,6 +47,8 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{minutes}:{seconds}")
     if count > 0:
         canvas.after(1000, count_down, count - 1)
+    else:
+        start_timer()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
