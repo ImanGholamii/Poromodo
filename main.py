@@ -16,6 +16,9 @@ LONG_BREAK_MIN = 20
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
+def start_timer():
+    count_down(5)
+
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
     canvas.itemconfig(timer_text, text=count)
@@ -45,9 +48,8 @@ for col in range(columns):
 canvas = Canvas(width=200, height=254, background=YELLOW, highlightthickness=0)  # highlight thickness >> remove frame
 tomato_img = PhotoImage(file="tomato.png")  # write Address
 canvas.create_image(100, 112, image=tomato_img)
-timer_text = canvas.create_text(100, 130, text="00:00", font=(FONT_NAME, 30, "bold"), fill="white")
+timer_text = canvas.create_text(100, 130, text="00:00", font=(FONT_NAME, 30, "bold"), fill=WHITE)
 canvas.grid_configure(row=1, column=1)
-count_down(5)
 
 # Labels
 timer_label = Label(text="Timer", font=(FONT_NAME, 35, "bold"), bg=YELLOW, fg=GREEN)
@@ -57,7 +59,8 @@ check_label = Label(text="✔", font=(FONT_NAME, 15, "bold"), bg=YELLOW, fg=GREE
 check_label.grid_configure(row=3, column=1)
 
 # Buttons
-start_btn = Button(text="Start", font=(FONT_NAME, 10, "bold"), bg=WHITE, bd=0, padx=0, pady=0, highlightthickness=0)
+start_btn = Button(text="Start", font=(FONT_NAME, 10, "bold"), bg=WHITE, bd=0, padx=0, pady=0, highlightthickness=0,
+                   command=start_timer)
 start_btn.grid_configure(row=2, column=0)
 
 reset_btn = Button(text="Reset", font=(FONT_NAME, 10, "bold"), bg=WHITE, bd=0, padx=0, pady=0, highlightthickness=0)
